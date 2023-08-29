@@ -66,4 +66,13 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //Retrofit2
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+    //livedata compose
+    implementation ("androidx.compose.runtime:runtime-livedata:1.3.1")
+    //testImplementation "androidx.arch.core:core-testing:2.1.0"
+
 }
