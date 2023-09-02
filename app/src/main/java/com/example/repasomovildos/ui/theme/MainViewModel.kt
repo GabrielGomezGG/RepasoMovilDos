@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.repasomovildos.data.Post
 import com.example.repasomovildos.data.RetrofitAlgo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
@@ -19,15 +20,10 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getTodos(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val todos = RetrofitAlgo.getApi.getPosts().body()!!
 
-            _posts.value = todos
-
-            _posts.value!!.forEach {
-                Log.i("titi", it.body)
-            }
-
+            _posts.postValue(todos)
         }
     }
 
