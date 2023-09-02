@@ -1,19 +1,24 @@
 package com.example.repasomovildos.ui.theme
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.repasomovildos.data.Post
-import com.example.repasomovildos.data.RetrofitAlgo
+import com.example.repasomovildos.data.api.ApiService
+import com.example.repasomovildos.data.api.PostResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
 
-    private val _posts = MutableLiveData<List<Post>>()
-    val posts : LiveData<List<Post>> = _posts
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val apiService: ApiService
+) : ViewModel() {
+
+    private val _posts = MutableLiveData<List<PostResponse>>()
+    val posts : LiveData<List<PostResponse>> = _posts
 
     init{
         getTodos()
@@ -21,7 +26,7 @@ class MainViewModel : ViewModel() {
 
     private fun getTodos(){
         viewModelScope.launch(Dispatchers.IO) {
-            val todos = RetrofitAlgo.getApi.getPosts().body()!!
+            val todos = apiService.getPosts().body()!!
 
             _posts.postValue(todos)
         }

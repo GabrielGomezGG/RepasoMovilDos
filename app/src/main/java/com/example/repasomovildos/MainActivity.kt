@@ -19,7 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.repasomovildos.ui.theme.MainViewModel
 import com.example.repasomovildos.ui.theme.RepasoMovilDosTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val mainViewModel : MainViewModel by viewModels()
