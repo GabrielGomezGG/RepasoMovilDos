@@ -1,6 +1,6 @@
 package com.example.repasomovildos.data.model
 
-data class PostResponse(
+data class Post(
     val userId: Int,
     val id: Int,
     val title: String,

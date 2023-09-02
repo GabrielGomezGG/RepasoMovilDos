@@ -1,5 +1,7 @@
 package com.example.repasomovildos.di
 
+import com.example.repasomovildos.data.IPostRepository
+import com.example.repasomovildos.data.PostRepository
 import com.example.repasomovildos.data.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -26,6 +28,12 @@ class ApiModule {
     @Provides
     fun provideApiService(retrofit : Retrofit) : ApiService{
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providePostRepository(apiService: ApiService) : PostRepository {
+        return IPostRepository(apiService)
     }
 
 }
