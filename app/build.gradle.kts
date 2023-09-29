@@ -81,6 +81,16 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
+    //Room
+    implementation ("androidx.room:room-ktx:2.5.0")
+    kapt ("androidx.room:room-compiler:2.5.0")
+    //implementation "androidx.room:room-runtime:2.5.0"
+    //testImplementation("androidx.room:room-testing:2.5.0")
+
+    //kotlin corrutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    //testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
+
 
 
 }

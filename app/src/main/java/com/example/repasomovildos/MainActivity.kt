@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -45,10 +46,16 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(mainViewModel: MainViewModel) {
-    val posts by mainViewModel.posts.observeAsState(ResponseUiState.Loading)
+//    val posts by mainViewModel.posts.observeAsState(ResponseUiState.Loading)
+    val posts by mainViewModel.posts.collectAsState(initial = ResponseUiState.Loading)
 
     when(posts){
-        is ResponseUiState.Failure -> TODO()
+        is ResponseUiState.Failure -> {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+//                Text(text = (posts as ResponseUiState.Failure).error.message.toString())
+                Text(text = "No tenes internet")
+            }
+        }
         ResponseUiState.Loading -> {
             Box(modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
